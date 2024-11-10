@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FA79C84C2CD863B400B566E3 /* HDatePicker in Frameworks */ = {isa = PBXBuildFile; productRef = FA79C84B2CD863B400B566E3 /* HDatePicker */; };
+		FAD520022CE06DC10054B361 /* CodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = FAD520012CE06DC10054B361 /* CodeScanner */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		FA7C07C52CB9AF5600094DB3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD520022CE06DC10054B361 /* CodeScanner in Frameworks */,
+				FA79C84C2CD863B400B566E3 /* HDatePicker in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +79,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA79C84A2CD863B400B566E3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FA7C07A92CB9AF5500094DB3 = {
 			isa = PBXGroup;
 			children = (
 				FA7C07B42CB9AF5500094DB3 /* Nutrition */,
 				FA7C07C72CB9AF5600094DB3 /* NutritionTests */,
 				FA7C07D12CB9AF5600094DB3 /* NutritionUITests */,
+				FA79C84A2CD863B400B566E3 /* Frameworks */,
 				FA7C07B32CB9AF5500094DB3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +127,8 @@
 			);
 			name = Nutrition;
 			packageProductDependencies = (
+				FA79C84B2CD863B400B566E3 /* HDatePicker */,
+				FAD520012CE06DC10054B361 /* CodeScanner */,
 			);
 			productName = Nutrition;
 			productReference = FA7C07B22CB9AF5500094DB3 /* Nutrition.app */;
@@ -195,6 +212,10 @@
 			);
 			mainGroup = FA7C07A92CB9AF5500094DB3;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FA79C8342CD8628400B566E3 /* XCRemoteSwiftPackageReference "HDatePicker" */,
+				FAD520002CE06DC10054B361 /* XCRemoteSwiftPackageReference "CodeScanner" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FA7C07B32CB9AF5500094DB3 /* Products */;
 			projectDirPath = "";
@@ -399,6 +420,7 @@
 				DEVELOPMENT_TEAM = C6VBMG2Y53;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = test5;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +450,7 @@
 				DEVELOPMENT_TEAM = C6VBMG2Y53;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = test5;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -558,6 +581,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA79C8342CD8628400B566E3 /* XCRemoteSwiftPackageReference "HDatePicker" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexphanna/HDatePicker";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		FAD520002CE06DC10054B361 /* XCRemoteSwiftPackageReference "CodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/twostraws/CodeScanner";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA79C84B2CD863B400B566E3 /* HDatePicker */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA79C8342CD8628400B566E3 /* XCRemoteSwiftPackageReference "HDatePicker" */;
+			productName = HDatePicker;
+		};
+		FAD520012CE06DC10054B361 /* CodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAD520002CE06DC10054B361 /* XCRemoteSwiftPackageReference "CodeScanner" */;
+			productName = CodeScanner;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA7C07AA2CB9AF5500094DB3 /* Project object */;
 }
