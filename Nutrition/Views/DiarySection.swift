@@ -10,8 +10,9 @@ import CodeScanner
 
 struct DiarySection: View {
     @State var meal: Meal
-    @State var barcodeSheet: Bool = false
-    @State var manualSheet: Bool = false
+    
+    @Binding var selectedMeal: Meal?
+    @Binding var sheet: Sheet
     
     var body: some View {
         Section(meal.name) {
@@ -19,26 +20,18 @@ struct DiarySection: View {
                 ItemNavigationLink(item: item)
             }
             Menu {
-                Button("Scan Barcode", systemImage: "barcode.viewfinder", action: { barcodeSheet = true })
+                Button("Scan Barcode", systemImage: "barcode.viewfinder") {
+                    selectedMeal = meal
+                    sheet = .barcode
+                }
                 Button("Scan Nutrition Facts", systemImage: "text.viewfinder", action: {})
                     .disabled(true)
-                Button("Enter Manually", systemImage: "character.cursor.ibeam", action: { manualSheet = true })
+                Button("Enter Manually", systemImage: "character.cursor.ibeam") {
+                    selectedMeal = meal
+                    sheet = .manual
+                }
             } label: {
                 Label("Add Item", systemImage: "plus")
-            }
-        }
-        .sheet(isPresented: $manualSheet) {
-            ItemEditor(meal: meal)
-        }
-        .sheet(isPresented: $barcodeSheet) {
-            CodeScannerView(codeTypes: [.upce, .ean13]) { response in
-                switch response {
-                case .success(let result):
-                    print(result.string)
-                case .failure:
-                    print("fail")
-                }
-                barcodeSheet = false
             }
         }
     }

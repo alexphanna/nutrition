@@ -11,9 +11,12 @@ struct ItemView: View {
     @State var item: Item
     var body: some View {
         List {
-            LabeledContent("Calories", value: "50")
-            LabeledContent("Protein", value: "25")
+            Section("Nutrition Facts") {
+                LabeledContent("Calories", value: item.calories, format: .number)
+                LabeledContent("Protein", value: "25")
+            }
         }
-        .navigationTitle("Apple")
+        .navigationTitle(item.name)
+        .navigationBarTitleDisplayMode(.large)
     }
 }

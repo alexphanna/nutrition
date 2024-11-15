@@ -7,18 +7,39 @@
 
 import SwiftUI
 
-struct ItemEditor: View {
+struct ItemEditor: View { // Inspired by passwords app
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     
     @State var meal: Meal
     
     @State private var name: String = ""
+    @State private var servingSize: String = ""
+    @State private var calories: String = ""
     
     var body: some View {
         NavigationStack {
             Form {
-                TextField("Name", text: $name)
+                LabeledContent {
+                    TextField("Apple", text: $name)
+                        .multilineTextAlignment(.trailing)
+                } label: {
+                    Text("Name")
+                }
+                LabeledContent {
+                    TextField("0", text: $servingSize)
+                        .multilineTextAlignment(.trailing)
+                        .keyboardType(.numberPad)
+                } label: {
+                    Text("Serving Size")
+                }
+                LabeledContent {
+                    TextField("0", text: $calories)
+                        .multilineTextAlignment(.trailing)
+                        .keyboardType(.numberPad)
+                } label: {
+                    Text("Calories")
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -33,6 +54,7 @@ struct ItemEditor: View {
                             dismiss()
                         }
                     }
+                    .disabled(name.isEmpty)
                 }
             }
             .navigationTitle("Add Item")
@@ -41,6 +63,6 @@ struct ItemEditor: View {
     }
     
     private func save() {
-        meal.items.append(Item(name: name))
+        meal.items.append(Item(name: name, servingSize: Int(servingSize)!, calories: Int(calories)!))
     }
 }

@@ -11,9 +11,11 @@ import SwiftData
 class Meal {
     var name: String
     var items: [Item]
+    var priority: Int
     
-    init(name: String) {
+    init(name: String, priority: Int) {
         self.name = name
         self.items = [Item]()
+        self.priority = priority
     }
 }

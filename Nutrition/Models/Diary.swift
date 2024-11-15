@@ -17,8 +17,10 @@ class Diary {
         let mealNames = ["Breakfast", "Lunch", "Dinner", "Snacks"]
         self.date = date
         self.meals = [Meal]()
+        var priority = 0;
         for mealName in mealNames {
-            self.meals.append(Meal(name: mealName))
+            self.meals.append(Meal(name: mealName, priority: priority))
+            priority += 1
         }
     }
 }
