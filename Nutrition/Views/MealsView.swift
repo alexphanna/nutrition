@@ -11,8 +11,6 @@ import SwiftUI
 import SwiftData
 
 struct MealsView: View {
-    @Environment(\.dismiss) private var dismiss
-    
     @Query private var diaries: [Diary]
     var diary: Diary? { diaries.first }
     @State private var selectedMeal: Meal? = nil
@@ -37,14 +35,7 @@ struct MealsView: View {
                 ItemEditor(meal: meal)
             }
             else if sheet == .barcode {
-                CodeScannerView(codeTypes: [.upce, .ean13], scanMode: .once, showViewfinder: true) { response in
-                    switch response {
-                    case .success(let result):
-                        selectedMeal?.items.append(Item(name: result.string, servingSize: 0, calories: 0))
-                    case .failure:
-                        break
-                    }
-                }
+                BarcodeScanner(meal: meal)
             }
         }
     }
