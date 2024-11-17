@@ -11,6 +11,7 @@ import SwiftUI
 struct BarcodeScanner: View {
     @Environment(\.dismiss) private var dismiss
     
+    @State var diary: Diary
     @State var meal: Meal
     
     var body: some View {
@@ -18,6 +19,9 @@ struct BarcodeScanner: View {
             CodeScannerView(codeTypes: [.upce, .ean13]) { response in
                 switch response {
                 case .success(let result):
+                    if !diary.meals.compactMap({ $0.name }).contains(meal.name) {
+                        diary.meals.append(meal)
+                    }
                     meal.items.append(Item(name: result.string, servingSize: 0, calories: 0))
                     dismiss()
                     break

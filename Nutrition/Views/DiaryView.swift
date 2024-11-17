@@ -13,16 +13,20 @@ import CodeScanner
 
 struct DiaryView: View {
     @Environment(\.modelContext) private var modelContext
-    
     @State var selectedDay: Date = .now
-    @State var temp: Bool = false
+    @Query private var diaries: [Diary]
+    
+    private var calendar = Calendar.current
     
     var body: some View {
+        let dateWithoutTime = calendar.date(from: calendar.dateComponents([.year, .month, .day], from: selectedDay))!
         NavigationView {
             VStack(spacing: 0) {
                 HDatePicker(selectedDay: $selectedDay)
                     .onChange(of: selectedDay) {
-                        modelContext.insert(Diary(date: selectedDay))
+                        if !diaries.compactMap({ $0.date }).contains(where: { calendar.isDate($0, inSameDayAs: dateWithoutTime) }) {
+                            modelContext.insert(Diary(date: dateWithoutTime))
+                        }
                     }
                 Divider()
                 MealsView(date: selectedDay)
@@ -34,7 +38,9 @@ struct DiaryView: View {
             }
         }
         .onAppear {
-            modelContext.insert(Diary(date: selectedDay))
+            if !diaries.compactMap({ $0.date }).contains(where: { calendar.isDate($0, inSameDayAs: dateWithoutTime) }) {
+                modelContext.insert(Diary(date: dateWithoutTime))
+            }
         }
     }
 }

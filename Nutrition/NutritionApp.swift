@@ -14,7 +14,9 @@ struct NutritionApp: App {
         WindowGroup {
             ContentView()
                 .modelContainer(for: [
-                    Diary.self
+                    Diary.self,
+                    Meal.self,
+                    Item.self
                 ])
         }
     }

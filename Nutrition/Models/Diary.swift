@@ -11,13 +11,13 @@ import SwiftData
 @Model
 class Diary {
     var meals: [Meal]
-    var date: Date
+    @Attribute(.unique) var date: Date
     
     init(date: Date) {
         let mealNames = ["Breakfast", "Lunch", "Dinner", "Snacks"]
         self.date = date
         self.meals = [Meal]()
-        var priority = 0;
+        var priority = 0
         for mealName in mealNames {
             self.meals.append(Meal(name: mealName, priority: priority))
             priority += 1

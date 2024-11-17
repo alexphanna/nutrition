@@ -10,6 +10,7 @@ import SwiftData
 @Model
 class Meal {
     var name: String
+    var diary: Diary?
     var items: [Item]
     var priority: Int
     

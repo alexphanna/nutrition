@@ -10,8 +10,10 @@ import SwiftData
 @Model
 class Item {
     var name: String
+    var meal: Meal?
     var servingSize: Int
     var calories: Int
+    
     init(name: String, servingSize: Int, calories: Int) {
         self.name = name
         self.servingSize = servingSize

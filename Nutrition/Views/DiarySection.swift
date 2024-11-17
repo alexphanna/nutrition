@@ -9,6 +9,7 @@ import SwiftUI
 import CodeScanner
 
 struct DiarySection: View {
+    @State var diary: Diary
     @State var meal: Meal
     
     @Binding var selectedMeal: Meal?

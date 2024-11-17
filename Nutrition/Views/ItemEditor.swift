@@ -11,6 +11,7 @@ struct ItemEditor: View { // Inspired by passwords app
     @Environment(\.dismiss) private var dismiss
     @Environment(\.modelContext) private var modelContext
     
+    @State var diary: Diary
     @State var meal: Meal
     
     @State private var name: String = ""
@@ -63,6 +64,9 @@ struct ItemEditor: View { // Inspired by passwords app
     }
     
     private func save() {
+        if !diary.meals.compactMap({ $0.name }).contains(meal.name) {
+            diary.meals.append(meal)
+        }
         meal.items.append(Item(name: name, servingSize: Int(servingSize)!, calories: Int(calories)!))
     }
 }

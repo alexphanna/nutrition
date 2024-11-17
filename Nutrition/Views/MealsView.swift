@@ -17,25 +17,25 @@ struct MealsView: View {
     @State private var sheet: Sheet = .barcode
     
     init(date: Date) {
-        self._diaries = Query(filter: #Predicate<Diary> { diary in
-            diary.date == date
-        }, sort: \Diary.date)
+        self._diaries = Query(filter: #Predicate<Diary> {
+            $0.date <= date
+        }, sort: \Diary.date, order: .reverse)
     }
     
     var body: some View {
         List {
             if diary != nil {
                 ForEach(diary!.meals.sorted { $0.priority < $1.priority }) { meal in
-                    DiarySection(meal: meal, selectedMeal: $selectedMeal, sheet: $sheet)
+                    DiarySection(diary: diary!, meal: meal, selectedMeal: $selectedMeal, sheet: $sheet)
                 }
             }
         }
         .sheet(item: $selectedMeal) { meal in
             if sheet == .manual {
-                ItemEditor(meal: meal)
+                ItemEditor(diary: diary!, meal: meal)
             }
             else if sheet == .barcode {
-                BarcodeScanner(meal: meal)
+                BarcodeScanner(diary: diary!, meal: meal)
             }
         }
     }
