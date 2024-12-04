@@ -55,7 +55,7 @@ struct ItemEditor: View { // Inspired by passwords app
                             dismiss()
                         }
                     }
-                    .disabled(name.isEmpty)
+                    .disabled(name.isEmpty || servingSize.isEmpty || calories.isEmpty)
                 }
             }
             .navigationTitle("Add Item")

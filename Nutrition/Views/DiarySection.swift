@@ -22,14 +22,14 @@ struct DiarySection: View {
             }
             Menu {
                 Button("Scan Barcode", systemImage: "barcode.viewfinder") {
-                    selectedMeal = meal
                     sheet = .barcode
+                    selectedMeal = meal
                 }
                 Button("Scan Nutrition Facts", systemImage: "text.viewfinder", action: {})
                     .disabled(true)
                 Button("Enter Manually", systemImage: "character.cursor.ibeam") {
-                    selectedMeal = meal
                     sheet = .manual
+                    selectedMeal = meal
                 }
             } label: {
                 Label("Add Item", systemImage: "plus")

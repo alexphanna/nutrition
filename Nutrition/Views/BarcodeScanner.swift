@@ -13,6 +13,7 @@ struct BarcodeScanner: View {
     
     @State var diary: Diary
     @State var meal: Meal
+    @State var itemName: String = ""
     
     var body: some View {
         NavigationStack {
@@ -22,7 +23,10 @@ struct BarcodeScanner: View {
                     if !diary.meals.compactMap({ $0.name }).contains(meal.name) {
                         diary.meals.append(meal)
                     }
-                    meal.items.append(Item(name: result.string, servingSize: 0, calories: 0))
+                    Task {
+                        try! itemName = (await getNutritionFacts(barcode: result.string)["product"] as! [String: Any])["product_name"] as! String
+                        meal.items.append(Item(name: itemName, servingSize: 0, calories: 0))
+                    }
                     dismiss()
                     break
                 case .failure:
@@ -36,6 +40,13 @@ struct BarcodeScanner: View {
                     }
                 }
             }
+        }
+    }
+    
+    func getNutritionFacts(barcode: String) async throws -> [String: Any] {
+        do {
+            let (data, _) = try await URLSession.shared.data(from: URL(string: "https://world.openfoodfacts.net/api/v2/product/\(barcode)")!)
+            return try (JSONSerialization.jsonObject(with: data) as? [String: Any])!
         }
     }
 }
