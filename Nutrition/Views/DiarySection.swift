@@ -11,29 +11,38 @@ import CodeScanner
 struct DiarySection: View {
     @State var diary: Diary
     @State var meal: Meal
+    @State var isExpanded: Bool = true
     
     @Binding var selectedMeal: Meal?
     @Binding var sheet: Sheet
     
     var body: some View {
-        Section(meal.name) {
-            ForEach(meal.items) { item in
-                ItemNavigationLink(item: item)
-            }
-            Menu {
-                Button("Scan Barcode", systemImage: "barcode.viewfinder") {
-                    sheet = .barcode
-                    selectedMeal = meal
+        Section(
+            isExpanded: $isExpanded,
+            content: {
+                ForEach(meal.items) { item in
+                    ItemNavigationLink(item: item)
                 }
-                Button("Scan Nutrition Facts", systemImage: "text.viewfinder", action: {})
-                    .disabled(true)
-                Button("Enter Manually", systemImage: "character.cursor.ibeam") {
-                    sheet = .manual
-                    selectedMeal = meal
+                Menu {
+                    Button("Scan Barcode", systemImage: "barcode.viewfinder") {
+                        sheet = .barcode
+                        selectedMeal = meal
+                    }
+                    Button("Scan Nutrition Facts", systemImage: "text.viewfinder", action: {})
+                        .disabled(true)
+                    Button("Enter Manually", systemImage: "character.cursor.ibeam") {
+                        sheet = .manual
+                        selectedMeal = meal
+                    }
+                } label: {
+                    HStack {
+                        Label("Add Item", systemImage: "plus")
+                        Spacer()
+                    }
                 }
-            } label: {
-                Label("Add Item", systemImage: "plus")
-            }
-        }
+            },
+            header: {
+                Text(meal.name)
+            })
     }
 }

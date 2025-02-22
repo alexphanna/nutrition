@@ -16,7 +16,7 @@ struct ContentView: View {
                 DiaryView()
             }
             Tab("Profile", systemImage: "person") {
-                EmptyView()
+                ProfileView()
             }
         }
     }

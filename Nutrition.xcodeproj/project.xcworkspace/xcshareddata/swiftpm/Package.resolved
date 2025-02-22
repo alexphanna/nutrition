@@ -1,5 +1,5 @@
 {
-  "originHash" : "0b1a82b3a793a22a7ea3ccc3e82cbbf89bc0f65a40be1c9e8793bdcf3eea2eb8",
+  "originHash" : "c7ee2ccdb013b39429bcdd8fe1b502bacfdf444fa231dbdf0f8d68c74b3b028e",
   "pins" : [
     {
       "identity" : "codescanner",
@@ -7,7 +7,7 @@
       "location" : "https://github.com/twostraws/CodeScanner",
       "state" : {
         "branch" : "main",
-        "revision" : "9fa582f4b36c69c2a55bff5fb3377eb170ae273c"
+        "revision" : "5e886430238944c7200fc9e10dbf2d9550dba865"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "https://github.com/alexphanna/HDatePicker",
       "state" : {
         "branch" : "main",
-        "revision" : "f3cb0c1f0d5bf8dba0f1a827af87ee31ec218c0a"
+        "revision" : "e28bd6eed48050ef1b0bbd838ba7df35207b08b0"
       }
     }
   ],
